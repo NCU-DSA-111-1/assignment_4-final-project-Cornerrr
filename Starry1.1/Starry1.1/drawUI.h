@@ -369,7 +369,7 @@ void battle_print() {
 	ground_pos.X = 2;
 	ground_pos.Y = 2;
 	for (int i = 0;i < 25;i++) {
-		ground_pos.Y = GROUND_Y_POSITION - 19 + i;
+		ground_pos.Y = GROUND_Y_POSITION - 18 + i;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
 		printf("                                                                                                            ");
 	}
