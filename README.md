@@ -1,4 +1,4 @@
-#environment settings
+# environment settings
 visual studio 2019
 ## How to play
 first enter your name </br> 
