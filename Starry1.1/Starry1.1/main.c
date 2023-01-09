@@ -92,7 +92,7 @@ void game_start() {
 	while (1) {
 		if (map1_agree == 1) {//地圖一
 			back_ground2();
-			//story2_print();
+			story2_print();
 			map1_agree = 0;
 		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), time_xy);//時間
