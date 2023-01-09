@@ -24,8 +24,8 @@ int exceed_map1(COORD* current_xy);
 void Holt_chat(COORD* current_xy);
 void show_Holt_health(COORD* current_xy);
 
-//2023/01/06¤l¼u»s§@
-#define SHOOT_HOW_FAST 20			//¤l¼u®gÀ»ªºÀW²v(¼Æ¦r¶V¤j³]¶VºC
+//2023/01/06å­å½ˆè£½ä½œ
+#define SHOOT_HOW_FAST 20			//å­å½ˆå°„æ“Šçš„é »ç‡(æ•¸å­—è¶Šå¤§è¨­è¶Šæ…¢
 void print_all(COORD* current_xy);
 void print_bullet();
 void PRINT_bullet_function(struct bullet_pos* first_bullet);
@@ -39,12 +39,12 @@ void free_bullet_function(struct bullet_pos** current_bullet);
 //void deLinked_all_bullet();
 struct bullet_pos* First_Node_of_All_bullet;
 struct bullet_pos* last_Node_of_All_bullet;
-int bullet_amount = 0;  //­pºâ¤l¼u¦h¤Ö­ÓÃì¸`¦ê¦b¤@°_
-struct bullet_pos* first_bullet = NULL;  //1¸¹ªZ¾¹ªºÀY«ü°w¡A
+int bullet_amount = 0;  //è¨ˆç®—å­å½ˆå¤šå°‘å€‹éˆç¯€ä¸²åœ¨ä¸€èµ·
+struct bullet_pos* first_bullet = NULL;  //1è™Ÿæ­¦å™¨çš„é ­æŒ‡é‡ï¼Œ
 struct bullet_pos* last_bullet = NULL;
 COORD tmp_old_bullet;
 int surplus_bullet = 20;
-//2023/01/07 ¼Ä¤H»s§@(Â²³æ³]³]¥u¬O¬°¤F´ú¤l¼u¸I¼²¡A¥Ø«e¥ı¥Hnidandan·í¼Ä¤H¬İ¤l¼u·|¤£·|®ø¥¢
+//2023/01/07 æ•µäººè£½ä½œ(ç°¡å–®è¨­è¨­åªæ˜¯ç‚ºäº†æ¸¬å­å½ˆç¢°æ’ï¼Œç›®å‰å…ˆä»¥nidandanç•¶æ•µäººçœ‹å­å½ˆæœƒä¸æœƒæ¶ˆå¤±
 struct enermy holt;
 void print_holt();
 void generate_holt();
@@ -72,9 +72,9 @@ int main() {
 	game_start();
 	system("pause");
 }
-//¶}©l¹CÀ¸
+//é–‹å§‹éŠæˆ²
 void game_start() {
-	bullet_amount = 0;//¼Æ¾Úªì©l¤Æ
+	bullet_amount = 0;//æ•¸æ“šåˆå§‹åŒ–
 	COORD current_xy;
 	current_xy.X = 7;
 	current_xy.Y = 22;
@@ -90,15 +90,15 @@ void game_start() {
 	skillone = 0;
 	generate_holt();
 	while (1) {
-		if (map1_agree == 1) {//¦a¹Ï¤@
+		if (map1_agree == 1) {//åœ°åœ–ä¸€
 			back_ground2();
-			//story2_print();
+			story2_print();
 			map1_agree = 0;
 		}
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), time_xy);//®É¶¡
-		printf("®É¶¡ : %d", count_main_while_time);
-		keybord_control(&current_xy);//Áä½L±±¨î
-		exceed_map(&current_xy);//Ãä¬É§P©w
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), time_xy);//æ™‚é–“
+		printf("æ™‚é–“ : %d", count_main_while_time);
+		keybord_control(&current_xy);//éµç›¤æ§åˆ¶
+		exceed_map(&current_xy);//é‚Šç•Œåˆ¤å®š
 		if (Holt_chat_agree == 1) {
 			Holt_chat(&current_xy);
 		}
@@ -108,13 +108,13 @@ void game_start() {
 			update_holt(&current_xy);
 		}
 		if (map1_exceed_agree == 1) {
-			exceed_map1(&current_xy);//¹Ï¤@Ãä¬É§P©w
+			exceed_map1(&current_xy);//åœ–ä¸€é‚Šç•Œåˆ¤å®š
 		}
 		print_character(&current_xy, rolechoice);
 		print_all(&current_xy);
 		if ((bullet_amount) >= 1)
 		{
-			judge_bullet();//§PÂ_¬O§_¶WÃä¬É­nÄÀ©ñ°O¾ĞÅé
+			judge_bullet();//åˆ¤æ–·æ˜¯å¦è¶…é‚Šç•Œè¦é‡‹æ”¾è¨˜æ†¶é«”
 			update_bullet_xy();
 		}
 		show_all_data();
@@ -135,12 +135,12 @@ void show_all_data() {
 	show_health();
 	show_mp();
 }
-//¨¤¦â¦å¶q
+//è§’è‰²è¡€é‡
 void show_health()
 {
 	int i;
 	COORD health_pos;
-	health_pos.X = 120;			//©ñ¦å±ø¨ºÃäªº¤¤¤ßÂI
+	health_pos.X = 120;			//æ”¾è¡€æ¢é‚£é‚Šçš„ä¸­å¿ƒé»
 	health_pos.Y = 17;
 	COORD rim;
 	COORD word;
@@ -148,20 +148,20 @@ void show_health()
 	rim.Y = health_pos.Y - 1;
 	word.X = health_pos.X - 7;
 	word.Y = health_pos.Y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), health_pos);//¥ı§âÂÂªº²M°£
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), health_pos);//å…ˆæŠŠèˆŠçš„æ¸…é™¤
 	printf("            ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), rim);
-	printf("¢z                ¢{");
+	printf("â”Œ                â”");
 	rim.Y += 2;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), rim);
-	printf("¢|                ¢}");
+	printf("â””                â”˜");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), word);
 	printf("HP:");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), health_pos);
 	for (i = 0; i < health; i++)
 	{
 		SetColor(4);
-		printf("¢h");
+		printf("â–‡");
 	}
 	/*SetColor(4);
 	printf("8=====D");*/
@@ -170,7 +170,7 @@ void show_health()
 		text_pos.X = 40;
 		text_pos.Y = 24;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
-		printf("ÀN¯S: %s,§AÁÙ¬O¦^¥hºØ¥Ğ§a", name);
+		printf("éœç‰¹: %s,ä½ é‚„æ˜¯å›å»ç¨®ç”°å§", name);
 		Sleep(2000);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 		printf("                           ");
@@ -179,18 +179,18 @@ void show_health()
 		back_ground2();
 		battle_agree = 0;
 		Holt_chat_agree = 1;
-		health = 6; //¹w³]§ï¦¨current_health
+		health = 6; //é è¨­æ”¹æˆcurrent_health
 		mp = 10;
 	}
 	printf("\n");
 	SetColor(7);
 }
-//ÀN¯S¦å¶q
+//éœç‰¹è¡€é‡
 void show_Holt_health(COORD* current_xy)
 {
 	int i;
 	COORD holt_health_pos;
-	holt_health_pos.X = 24;			//©ñ¦å±ø¨ºÃäªº¤¤¤ßÂI
+	holt_health_pos.X = 24;			//æ”¾è¡€æ¢é‚£é‚Šçš„ä¸­å¿ƒé»
 	holt_health_pos.Y = 3;
 	COORD holt_rim;
 	COORD holt_word;
@@ -198,27 +198,27 @@ void show_Holt_health(COORD* current_xy)
 	holt_rim.Y = holt_health_pos.Y - 1;
 	holt_word.X = holt_health_pos.X - 7;
 	holt_word.Y = holt_health_pos.Y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_health_pos);//¥ı§âÂÂªº²M°£
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_health_pos);//å…ˆæŠŠèˆŠçš„æ¸…é™¤
 	printf("                                             ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_rim);
-	printf("¢z                                         ¢{");
+	printf("â”Œ                                         â”");
 	holt_rim.Y += 2;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_rim);
-	printf("¢|                                         ¢}");
+	printf("â””                                         â”˜");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_word);
 	printf("HOLT:");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_health_pos);
 	for (i = 0; i < holt.hp; i++)
 	{
 		SetColor(4);
-		printf("¢h");
+		printf("â–‡");
 	}
 	if (holt.hp == 0) {
 		COORD text_pos;
 		text_pos.X = 40;
 		text_pos.Y = 24;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
-		printf("ÀN¯S: %s,¨­¤âÅÜ±o¤£¿ù¤F©O", name);
+		printf("éœç‰¹: %s,èº«æ‰‹è®Šå¾—ä¸éŒ¯äº†å‘¢", name);
 		Sleep(2000);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 		printf("                           ");
@@ -233,12 +233,12 @@ void show_Holt_health(COORD* current_xy)
 	}
 	SetColor(7);
 }
-//¨¤¦âÅ]¶q
+//è§’è‰²é­”é‡
 void show_mp()
 {
 	int i;
 	COORD mp_pos;
-	mp_pos.X = 120;			//©ñ¦å±ø¨ºÃäªº¤¤¤ßÂI
+	mp_pos.X = 120;			//æ”¾è¡€æ¢é‚£é‚Šçš„ä¸­å¿ƒé»
 	mp_pos.Y = 21;
 	COORD rim;
 	COORD word;
@@ -246,20 +246,20 @@ void show_mp()
 	rim.Y = mp_pos.Y - 1;
 	word.X = mp_pos.X - 7;
 	word.Y = mp_pos.Y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), mp_pos);//¥ı§âÂÂªº²M°£
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), mp_pos);//å…ˆæŠŠèˆŠçš„æ¸…é™¤
 	printf("            ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), rim);
-	printf("¢z            ¢{");
+	printf("â”Œ            â”");
 	rim.Y += 2;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), rim);
-	printf("¢|            ¢}");
+	printf("â””            â”˜");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), word);
 	printf("MP:");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), mp_pos);
 	for (i = 0; i < mp; i++)
 	{
 		SetColor(3);
-		printf("¢h");
+		printf("â–‡");
 	}
 
 
@@ -272,16 +272,16 @@ void story2_print() {
 	chat_pos.Y = 4;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 	SetColor(7);
-	printf("¬P¬P®ø¥¢ªº­ì¦]µL¤H±oª¾¡A");
+	printf("æ˜Ÿæ˜Ÿæ¶ˆå¤±çš„åŸå› ç„¡äººå¾—çŸ¥ï¼Œ");
 	Sleep(2500);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 	printf("                         ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-	printf("©Ò¥Hªü¡A");
+	printf("æ‰€ä»¥é˜¿ï¼Œ");
 	Sleep(1500);
 	chat_pos.Y = chat_pos.Y + 1;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-	printf("¤Ö¦~¤U©w¨M¤ß¡A½ñ¤W®Èµ{¡A");
+	printf("å°‘å¹´ä¸‹å®šæ±ºå¿ƒï¼Œè¸ä¸Šæ—…ç¨‹ï¼Œ");
 	Sleep(2500);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 	printf("                         ");
@@ -289,11 +289,11 @@ void story2_print() {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 	printf("                         ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-	printf("´ÂµÛ¹k¥Û­°¸¨ªº©¼ºİ¡A");
+	printf("æœè‘—éš•çŸ³é™è½çš„å½¼ç«¯ï¼Œ");
 	Sleep(1500);
 	chat_pos.Y = chat_pos.Y + 1;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-	printf("«e¶i¡X¡X");
+	printf("å‰é€²â€”â€”");
 	Sleep(2500);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 	printf("                         ");
@@ -301,7 +301,7 @@ void story2_print() {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 	printf("                         ");
 }
-//ÀN¯S¹ï¸Ü
+//éœç‰¹å°è©±
 void Holt_chat(COORD* current_xy) {
 	if (current_xy->X >= 68 && current_xy->Y <= 19 && current_xy->X <= 85 && current_xy->Y >= 15) {
 		COORD chat_pos;
@@ -309,22 +309,22 @@ void Holt_chat(COORD* current_xy) {
 		chat_pos.Y = 4;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 		SetColor(7);
-		printf("«ö¤UªÅ¥Õ¶}©l¹ï¸Ü");
+		printf("æŒ‰ä¸‹ç©ºç™½é–‹å§‹å°è©±");
 		if (GetAsyncKeyState(0x20)) {
 			if (holtchat == 1) {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                         ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("ÀN¯S : %s ªø¤j¤Fªü", name);
+				printf("éœç‰¹ : %s é•·å¤§äº†é˜¿", name);
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                         ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("ÀN¯S : Å¥¸Ü Åı§Ú¬İ¬İ");
+				printf("éœç‰¹ : è½è©± è®“æˆ‘çœ‹çœ‹");
 				Sleep(2500);
 				chat_pos.Y += 1;
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("       §Aªº¹ê¤O!");
+				printf("       ä½ çš„å¯¦åŠ›!");
 				Sleep(2500);
 				chat_pos.Y -= 1;
 				current_xy->X = 33;
@@ -338,11 +338,11 @@ void Holt_chat(COORD* current_xy) {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                         ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("ÀN¯S : %s ¬İ¨Ó®v¤÷", name);
+				printf("éœç‰¹ : %s çœ‹ä¾†å¸«çˆ¶", name);
 				Sleep(2500);
 				chat_pos.Y += 1;
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("       ¤w¸g¨S¤°»ò¥i¥H±Ğ§Aªº¤F");
+				printf("       å·²ç¶“æ²’ä»€éº¼å¯ä»¥æ•™ä½ çš„äº†");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                              ");
@@ -350,11 +350,11 @@ void Holt_chat(COORD* current_xy) {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                        ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("ÀN¯S : §Ö¨«§a ´ÂµÛ§Aªº¥Ø¼Ğ...");
+				printf("éœç‰¹ : å¿«èµ°å§ æœè‘—ä½ çš„ç›®æ¨™...");
 				Sleep(2500);
 				chat_pos.Y += 1;
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("        §A¤w¸g¥i¥H¤F!");
+				printf("        ä½ å·²ç¶“å¯ä»¥äº†!");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                                 ");
@@ -362,27 +362,27 @@ void Holt_chat(COORD* current_xy) {
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                                  ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("ÀN¯S : µ¥µ¥,³o­Ó¬P¸­¶µÁå´Nµ¹§A§a");
+				printf("éœç‰¹ : ç­‰ç­‰,é€™å€‹æ˜Ÿè‘‰é …éŠå°±çµ¦ä½ å§");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                                  ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("ÀN¯S : ¬Û«H¥¦·|¹ï§A¦³À°§Uªº");
+				printf("éœç‰¹ : ç›¸ä¿¡å®ƒæœƒå°ä½ æœ‰å¹«åŠ©çš„");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                                  ");
 				SetColor(6);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("Àò±o¬P¸­¶µÁå");
+				printf("ç²å¾—æ˜Ÿè‘‰é …éŠ");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("À»±Ñ¼Ä¤H«á ¶µÁå·|²Ö¿n¬P¬Pªº¯à¶q");
+				printf("æ“Šæ•—æ•µäººå¾Œ é …éŠæœƒç´¯ç©æ˜Ÿæ˜Ÿçš„èƒ½é‡");
 				Sleep(2500);
 				chat_pos.Y += 1;
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("¨Ã´£¤É¦å¶q");
+				printf("ä¸¦æå‡è¡€é‡");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                 ");
@@ -391,18 +391,18 @@ void Holt_chat(COORD* current_xy) {
 				printf("                                  ");
 				health = 8;
 				COORD health_pos;
-				health_pos.X = 120;			//©ñ¦å±ø¨ºÃäªº¤¤¤ßÂI
+				health_pos.X = 120;			//æ”¾è¡€æ¢é‚£é‚Šçš„ä¸­å¿ƒé»
 				health_pos.Y = 17;
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), health_pos);//¥ı§âÂÂªº²M°£
+				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), health_pos);//å…ˆæŠŠèˆŠçš„æ¸…é™¤
 				printf("            ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), health_pos);
 				for (int i = 0; i < health; i++)
 				{
 					SetColor(4);
-					printf("¢h");
+					printf("â–‡");
 				}
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
-				printf("¦å¶q¤w´£¤É");
+				printf("è¡€é‡å·²æå‡");
 				Sleep(2500);
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                  ");
@@ -412,7 +412,7 @@ void Holt_chat(COORD* current_xy) {
 		}
 	}
 }
-//Áä½L±±¨î
+//éµç›¤æ§åˆ¶
 int keybord_control(COORD* current_xy)
 {
 	static int count_up_key = 0;
@@ -437,56 +437,56 @@ int keybord_control(COORD* current_xy)
 	if (GetAsyncKeyState(0x51)) {
 		skillone = 0;
 	}
-	//2023/01/06¤l¼u§ó·s_¦h¤è¦V§ğÀ»
+	//2023/01/06å­å½ˆæ›´æ–°_å¤šæ–¹å‘æ”»æ“Š
 	if (battle_agree == 1) {
-		if (count_space_key < SHOOT_HOW_FAST)		//¦pªG¨Sµ¥©óSOOT_HOW_FAST´N¥[¤@
+		if (count_space_key < SHOOT_HOW_FAST)		//å¦‚æœæ²’ç­‰æ–¼SOOT_HOW_FASTå°±åŠ ä¸€
 			count_space_key++;
-		if (GetAsyncKeyState(0x26))//¤è¦VÁä¤W§ğÀ»
+		if (GetAsyncKeyState(0x26))//æ–¹å‘éµä¸Šæ”»æ“Š
 		{
-			if (count_space_key == SHOOT_HOW_FAST)		//¥ÎSHOOT_HOW_FAST¨M©w­n®g¦h§Ö
+			if (count_space_key == SHOOT_HOW_FAST)		//ç”¨SHOOT_HOW_FASTæ±ºå®šè¦å°„å¤šå¿«
 			{
-				if (mp >= 1)		//¥ı¼È©w¦³Å]¤O¤~¥iµo®g?(
+				if (mp >= 1)		//å…ˆæš«å®šæœ‰é­”åŠ›æ‰å¯ç™¼å°„?(
 				{
-					generate_bullet(current_xy, 1);   //¤w¸g¬O«ü°w´N¤£¥Î¦A¶Ç»¼¦a§}
+					generate_bullet(current_xy, 1);   //å·²ç¶“æ˜¯æŒ‡é‡å°±ä¸ç”¨å†å‚³éåœ°å€
 				}
 				count_space_key = 0;
 			}
-			//count_space_key++;		//§â³o­ÓÅÜ¼Æ§ï¨ì¥~­±
+			//count_space_key++;		//æŠŠé€™å€‹è®Šæ•¸æ”¹åˆ°å¤–é¢
 
 		}
-		else if (GetAsyncKeyState(0x28))//¤è¦VÁä¤U§ğÀ»
+		else if (GetAsyncKeyState(0x28))//æ–¹å‘éµä¸‹æ”»æ“Š
 		{
 			if (count_space_key == SHOOT_HOW_FAST)
 			{
-				if (mp >= 1)		//¥ı¼È©w¦³Å]¤O¤~¥iµo®g?(
+				if (mp >= 1)		//å…ˆæš«å®šæœ‰é­”åŠ›æ‰å¯ç™¼å°„?(
 				{
-					generate_bullet(current_xy, 2);   //¤w¸g¬O«ü°w´N¤£¥Î¦A¶Ç»¼¦a§}
-				}
-				count_space_key = 0;
-			}
-			count_space_key++;
-
-		}
-		else if (GetAsyncKeyState(0x25))//¤è¦VÁä¥ª§ğÀ»
-		{
-			if (count_space_key == SHOOT_HOW_FAST)
-			{
-				if (mp >= 1)		//¥ı¼È©w¦³Å]¤O¤~¥iµo®g?(
-				{
-					generate_bullet(current_xy, 3);   //¤w¸g¬O«ü°w´N¤£¥Î¦A¶Ç»¼¦a§}
+					generate_bullet(current_xy, 2);   //å·²ç¶“æ˜¯æŒ‡é‡å°±ä¸ç”¨å†å‚³éåœ°å€
 				}
 				count_space_key = 0;
 			}
 			count_space_key++;
 
 		}
-		else if (GetAsyncKeyState(0x27))//¤è¦VÁä¥k§ğÀ»
+		else if (GetAsyncKeyState(0x25))//æ–¹å‘éµå·¦æ”»æ“Š
 		{
 			if (count_space_key == SHOOT_HOW_FAST)
 			{
-				if (mp >= 1)		//¥ı¼È©w¦³Å]¤O¤~¥iµo®g?(
+				if (mp >= 1)		//å…ˆæš«å®šæœ‰é­”åŠ›æ‰å¯ç™¼å°„?(
 				{
-					generate_bullet(current_xy, 4);   //¤w¸g¬O«ü°w´N¤£¥Î¦A¶Ç»¼¦a§}
+					generate_bullet(current_xy, 3);   //å·²ç¶“æ˜¯æŒ‡é‡å°±ä¸ç”¨å†å‚³éåœ°å€
+				}
+				count_space_key = 0;
+			}
+			count_space_key++;
+
+		}
+		else if (GetAsyncKeyState(0x27))//æ–¹å‘éµå³æ”»æ“Š
+		{
+			if (count_space_key == SHOOT_HOW_FAST)
+			{
+				if (mp >= 1)		//å…ˆæš«å®šæœ‰é­”åŠ›æ‰å¯ç™¼å°„?(
+				{
+					generate_bullet(current_xy, 4);   //å·²ç¶“æ˜¯æŒ‡é‡å°±ä¸ç”¨å†å‚³éåœ°å€
 				}
 				count_space_key = 0;
 			}
@@ -494,7 +494,7 @@ int keybord_control(COORD* current_xy)
 
 		}
 	}
-	if (w < 0 && d < 0 /*|| right < 0 && up < 0*/) //¥k¤W
+	if (w < 0 && d < 0 /*|| right < 0 && up < 0*/) //å³ä¸Š
 	{
 		if (count_rightup_key == 1)
 		{
@@ -506,7 +506,7 @@ int keybord_control(COORD* current_xy)
 			count_rightup_key++;
 		return 0;
 	}
-	if (w < 0 && a < 0 /*|| left < 0 && up < 0*/) //¥ª¤W
+	if (w < 0 && a < 0 /*|| left < 0 && up < 0*/) //å·¦ä¸Š
 	{
 		if (count_leftup_key == 1)
 		{
@@ -518,7 +518,7 @@ int keybord_control(COORD* current_xy)
 			count_leftup_key++;
 		return 0;
 	}
-	if (d < 0 && s < 0 /*|| right < 0 && down < 0*/) //¥k¤U
+	if (d < 0 && s < 0 /*|| right < 0 && down < 0*/) //å³ä¸‹
 	{
 		if (count_rightdown_key == 1)
 		{
@@ -530,7 +530,7 @@ int keybord_control(COORD* current_xy)
 			count_rightdown_key++;
 		return 0;
 	}
-	if (a < 0 && s < 0 /*|| left < 0 && down < 0*/) //¥ª¤U
+	if (a < 0 && s < 0 /*|| left < 0 && down < 0*/) //å·¦ä¸‹
 	{
 		if (count_leftdown_key == 1)
 		{
@@ -542,17 +542,17 @@ int keybord_control(COORD* current_xy)
 			count_leftdown_key++;
 		return 0;
 	}
-	if (GetAsyncKeyState(0x41) /*|| GetAsyncKeyState(0x25)*/) //¥ª
+	if (GetAsyncKeyState(0x41) /*|| GetAsyncKeyState(0x25)*/) //å·¦
 	{
 		current_xy->X -= 1;
 		return 0;
 	}
-	if (GetAsyncKeyState(0x44) /*|| GetAsyncKeyState(0x27)*/)//¥k
+	if (GetAsyncKeyState(0x44) /*|| GetAsyncKeyState(0x27)*/)//å³
 	{
 		current_xy->X += 1;
 		return 0;
 	}
-	if (GetAsyncKeyState(0x57) /*|| GetAsyncKeyState(0x26)*/)//¤W
+	if (GetAsyncKeyState(0x57) /*|| GetAsyncKeyState(0x26)*/)//ä¸Š
 	{
 		if (count_up_key == 2)
 		{
@@ -562,7 +562,7 @@ int keybord_control(COORD* current_xy)
 		count_up_key++;
 		return 0;
 	}
-	if (GetAsyncKeyState(0x53)/* || GetAsyncKeyState(0x28)*/)//¤U
+	if (GetAsyncKeyState(0x53)/* || GetAsyncKeyState(0x28)*/)//ä¸‹
 	{
 		if (count_down_key == 2)
 		{
@@ -574,7 +574,7 @@ int keybord_control(COORD* current_xy)
 	}
 	return 0;
 }
-//¿ï¾ÜÂ¾·~
+//é¸æ“‡è·æ¥­
 int choose_role() {
 	COORD choose_role_text;
 	choose_role_text.X = 40;
@@ -583,11 +583,11 @@ int choose_role() {
 	int role_num;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
 	SetColor(9);
-	printf("½Ğ¿ï¾ÜÂ¾·~...");
+	printf("è«‹é¸æ“‡è·æ¥­...");
 	Sleep(2000);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
-	printf("5¬í¤º«ö¤U1.¡u¾Ô¤h¡v; «ö¤U2.¡u¹C«L¡v:  ");
-	Sleep(2000);
+	printf("5ç§’å…§æŒ‰ä¸‹1.ã€Œæˆ°å£«ã€; æŒ‰ä¸‹2.ã€ŒéŠä¿ ã€:  ");
+	Sleep(5000);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
 	printf("                                      ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
@@ -608,7 +608,7 @@ int choose_role() {
 		return role_num;
 	}
 }
-//2023/1/5±ß¤W¡AÀu¤ÆÃä¬É§P©w
+//2023/1/5æ™šä¸Šï¼Œå„ªåŒ–é‚Šç•Œåˆ¤å®š
 int exceed_map(COORD* current_xy) {
 
 	if (current_xy->X > 104) {
@@ -625,7 +625,7 @@ int exceed_map(COORD* current_xy) {
 	}
 	return 0;
 }
-//¦a¹Ï¤@Ãä¬É§P©w
+//åœ°åœ–ä¸€é‚Šç•Œåˆ¤å®š
 int exceed_map1(COORD* current_xy) {
 	if (current_xy->Y > 22) {
 		current_xy->Y = 22;
@@ -675,7 +675,7 @@ void print_character(COORD* current_xy, int rolechoice) {
 	COORD xy;
 	xy.X = current_xy->X;
 	xy.Y = current_xy->Y;
-	if (count_main_while_time != 1)  //¦pªG¬O²Ä¤@¦¸°j°é ´N¸õ¹LÁôÂÃÂÂªº¤H
+	if (count_main_while_time != 1)  //å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡è¿´åœˆ å°±è·³ééš±è—èˆŠçš„äºº
 	{
 		for (int i = 0; i < 3; i++)
 		{
@@ -701,24 +701,24 @@ void print_character(COORD* current_xy, int rolechoice) {
 		xy.Y += 1;
 	}
 }
-//2023/01/06 ¤l¼u»s§@
+//2023/01/06 å­å½ˆè£½ä½œ
 void free_bullet_function(struct bullet_pos** current_bullet)
 {
 	COORD xy = (*current_bullet)->pos;
 	xy.Y += 1;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), xy);
 	printf(" ");
-	if ((*current_bullet)->last_pnext == NULL && (*current_bullet)->pnext == NULL)   //°²¦p¤T­Ó¼uÃì¥[°_¨Ó¥u¦³¤@Áû
+	if ((*current_bullet)->last_pnext == NULL && (*current_bullet)->pnext == NULL)   //å‡å¦‚ä¸‰å€‹å½ˆéˆåŠ èµ·ä¾†åªæœ‰ä¸€é¡†
 	{
 		First_Node_of_All_bullet = NULL;
 		last_Node_of_All_bullet = NULL;
 	}
-	else if ((*current_bullet)->last_pnext == NULL && (*current_bullet)->pnext != NULL)  //¤T­Ó¥H¤W²Ä¤@­Ó
+	else if ((*current_bullet)->last_pnext == NULL && (*current_bullet)->pnext != NULL)  //ä¸‰å€‹ä»¥ä¸Šç¬¬ä¸€å€‹
 	{
 		First_Node_of_All_bullet = (*current_bullet)->pnext;
 		First_Node_of_All_bullet->last_pnext = NULL;
 	}
-	else if ((*current_bullet)->last_pnext != NULL && (*current_bullet)->pnext == NULL) //¤T­Ó¥H¤W ³Ì«á¤@­Ó
+	else if ((*current_bullet)->last_pnext != NULL && (*current_bullet)->pnext == NULL) //ä¸‰å€‹ä»¥ä¸Š æœ€å¾Œä¸€å€‹
 	{
 		(*current_bullet)->last_pnext->pnext = NULL;
 		last_Node_of_All_bullet = (*current_bullet)->last_pnext;
@@ -726,59 +726,59 @@ void free_bullet_function(struct bullet_pos** current_bullet)
 	}
 	else
 	{
-		(*current_bullet)->last_pnext->pnext = (*current_bullet)->pnext; //²Ä¤@­Ó«ü¦V²Ä¤T­Ó
-		(*current_bullet)->pnext->last_pnext = (*current_bullet)->last_pnext;//²Ä¤T­Ó«ü¦V²Ä¤@­Ó
+		(*current_bullet)->last_pnext->pnext = (*current_bullet)->pnext; //ç¬¬ä¸€å€‹æŒ‡å‘ç¬¬ä¸‰å€‹
+		(*current_bullet)->pnext->last_pnext = (*current_bullet)->last_pnext;//ç¬¬ä¸‰å€‹æŒ‡å‘ç¬¬ä¸€å€‹
 	}
 }
 
 
-//2023/01/09·s¼W¤À¿ë¸I¼²¨ì½Ö
-//¥Î©ó§PÂ_Ãä¬É
-void JUDGE_bullet_function(struct bullet_pos** first_bullet, int* bullet_amount)  //¥Ñ©ó·|­«·s§ïÅÜ«ü°w«ü¦V ©Ò¥H»İ­n¥Î¤G¯Å«ü°w §PÂ_¤l¼u¬O§_¶W¹LÃä¬É
+//2023/01/09æ–°å¢åˆ†è¾¨ç¢°æ’åˆ°èª°
+//ç”¨æ–¼åˆ¤æ–·é‚Šç•Œ
+void JUDGE_bullet_function(struct bullet_pos** first_bullet, int* bullet_amount)  //ç”±æ–¼æœƒé‡æ–°æ”¹è®ŠæŒ‡é‡æŒ‡å‘ æ‰€ä»¥éœ€è¦ç”¨äºŒç´šæŒ‡é‡ åˆ¤æ–·å­å½ˆæ˜¯å¦è¶…éé‚Šç•Œ
 {
-	struct bullet_pos* current_bullet = NULL;//¥Î¨ÓÅıÃìªírun¤@¹Mªº«ü°w
+	struct bullet_pos* current_bullet = NULL;//ç”¨ä¾†è®“éˆè¡¨runä¸€éçš„æŒ‡é‡
 	struct bullet_pos* tmp = NULL;
 	current_bullet = (*first_bullet);
-	int condition = 0;						//¨S¸I¼² = 0, ¦³¸I¼²Ãä¬É = 1, ¦³¸I¼²¼Ä¤H = 2;
+	int condition = 0;						//æ²’ç¢°æ’ = 0, æœ‰ç¢°æ’é‚Šç•Œ = 1, æœ‰ç¢°æ’æ•µäºº = 2;
 
 	while (current_bullet != NULL)
 	{
-		condition = 0;		//¨C¦¸°O±oÂk¹s
-		if (holt.pos.X + 10 >= current_bullet->pos.X && current_bullet->pos.X >= holt.pos.X - 2 && holt.pos.Y + 3 >= current_bullet->pos.Y && current_bullet->pos.Y >= holt.pos.Y - 1) {		//¼²¨ì¤H
+		condition = 0;		//æ¯æ¬¡è¨˜å¾—æ­¸é›¶
+		if (holt.pos.X + 10 >= current_bullet->pos.X && current_bullet->pos.X >= holt.pos.X - 2 && holt.pos.Y + 3 >= current_bullet->pos.Y && current_bullet->pos.Y >= holt.pos.Y - 1) {		//æ’åˆ°äºº
 			condition = 2;
 			holt.hp -= current_bullet->damage;
 		}
-		else if (current_bullet->pos.Y <= 1 || current_bullet->pos.X <= 3 || current_bullet->pos.Y >= 26 || current_bullet->pos.X >= 106) {	//¼²¨ìÃä
+		else if (current_bullet->pos.Y <= 1 || current_bullet->pos.X <= 3 || current_bullet->pos.Y >= 26 || current_bullet->pos.X >= 106) {	//æ’åˆ°é‚Š
 			condition = 1;
 		}
-		//2023/01/07¼Ä¤H¸I¼²§PÂ_(¥Ø«e¥´ÀN¯S·í¼Ä¤H
-		if (condition != 0)  //¦pªG¶W¹LÃä¬É©Î¼²¨ì¼Ä¤H
+		//2023/01/07æ•µäººç¢°æ’åˆ¤æ–·(ç›®å‰æ‰“éœç‰¹ç•¶æ•µäºº
+		if (condition != 0)  //å¦‚æœè¶…éé‚Šç•Œæˆ–æ’åˆ°æ•µäºº
 		{
 			struct bullet_pos* ready_to_free = NULL;
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), current_bullet->pos);
 			printf("  ");
 			ready_to_free = current_bullet;
-			if (current_bullet->last_pnext == NULL && current_bullet->pnext == NULL)//¦pªG¬O³Ì«á¤@µo¤l¼u ´N§âÀY¤l¼u«ü¦VNULL
+			if (current_bullet->last_pnext == NULL && current_bullet->pnext == NULL)//å¦‚æœæ˜¯æœ€å¾Œä¸€ç™¼å­å½ˆ å°±æŠŠé ­å­å½ˆæŒ‡å‘NULL
 			{
-				current_bullet = NULL;			//¸õ¥X
+				current_bullet = NULL;			//è·³å‡º
 				*first_bullet = NULL;
-				*bullet_amount = 0;             //¨S¦³¤l¼u¤F
+				*bullet_amount = 0;             //æ²’æœ‰å­å½ˆäº†
 
 			}
 			else if (current_bullet->last_pnext == NULL && current_bullet->pnext != NULL)
 			{
-				(*first_bullet) = current_bullet->pnext;   //Åı²Ä¤GÁû¤l¼u ·í¦¨²Ä¤@¬ì¤l¼u
-				(*first_bullet)->last_pnext = NULL;      //¦]¬°²Ä¤GÁû¤l¼u ÅÜ¦¨²Ä¤@Áû¤F ©Ò¥H­n§â«ü¦V¤W¤@­Ó¸`ÂI«ü°w ­«·s«ü¦VNULL
-				free(ready_to_free);                     //§â²Ä¤@¬ì¤l¼uÄÀ©ñ¤º¦s
-				*bullet_amount -= 1;                    //¤l¼u¤Ö¤@¬ì
-				current_bullet = NULL;		//¸õ¥X
+				(*first_bullet) = current_bullet->pnext;   //è®“ç¬¬äºŒé¡†å­å½ˆ ç•¶æˆç¬¬ä¸€ç§‘å­å½ˆ
+				(*first_bullet)->last_pnext = NULL;      //å› ç‚ºç¬¬äºŒé¡†å­å½ˆ è®Šæˆç¬¬ä¸€é¡†äº† æ‰€ä»¥è¦æŠŠæŒ‡å‘ä¸Šä¸€å€‹ç¯€é»æŒ‡é‡ é‡æ–°æŒ‡å‘NULL
+				free(ready_to_free);                     //æŠŠç¬¬ä¸€ç§‘å­å½ˆé‡‹æ”¾å…§å­˜
+				*bullet_amount -= 1;                    //å­å½ˆå°‘ä¸€ç§‘
+				current_bullet = NULL;		//è·³å‡º
 			}
 			else if (current_bullet->last_pnext != NULL && current_bullet->pnext != NULL)
 			{
 				tmp = current_bullet->last_pnext;
-				tmp->pnext = current_bullet->pnext; //²Ä¤@­Ó«ü¦V²Ä¤T­Ó
+				tmp->pnext = current_bullet->pnext; //ç¬¬ä¸€å€‹æŒ‡å‘ç¬¬ä¸‰å€‹
 				current_bullet = current_bullet->pnext;
-				current_bullet->last_pnext = tmp;//²Ä¤T­Ó«ü¦V²Ä¤@­Ó
+				current_bullet->last_pnext = tmp;//ç¬¬ä¸‰å€‹æŒ‡å‘ç¬¬ä¸€å€‹
 				*bullet_amount -= 1;
 
 				free(ready_to_free);
@@ -787,7 +787,7 @@ void JUDGE_bullet_function(struct bullet_pos** first_bullet, int* bullet_amount)
 			{
 				tmp = current_bullet->last_pnext;
 				tmp->pnext = NULL;
-				current_bullet = NULL;	//¸õ¥X
+				current_bullet = NULL;	//è·³å‡º
 				*bullet_amount -= 1;
 				free(ready_to_free);
 			}
@@ -799,7 +799,7 @@ void JUDGE_bullet_function(struct bullet_pos** first_bullet, int* bullet_amount)
 	}
 }
 
-void judge_bullet()//§PÂ_¤l¼u¨Ï§_¶W¥XÃä¬É ­Y¶W¥X«hÄÀ©ñ±¼°O¾ĞÅé
+void judge_bullet()//åˆ¤æ–·å­å½ˆä½¿å¦è¶…å‡ºé‚Šç•Œ è‹¥è¶…å‡ºå‰‡é‡‹æ”¾æ‰è¨˜æ†¶é«”
 {
 	if (first_bullet != NULL)
 	{
@@ -807,9 +807,9 @@ void judge_bullet()//§PÂ_¤l¼u¨Ï§_¶W¥XÃä¬É ­Y¶W¥X«hÄÀ©ñ±¼°O¾ĞÅé
 	}
 
 }
-void UPDATE_bullet_list(struct bullet_pos* first_point) //§ó·s¤l¼u®y¼Ğ¡AÅı¥L©¹¯S©w¦a¤è¶]
+void UPDATE_bullet_list(struct bullet_pos* first_point) //æ›´æ–°å­å½ˆåº§æ¨™ï¼Œè®“ä»–å¾€ç‰¹å®šåœ°æ–¹è·‘
 {
-	struct bullet_pos* current_bullet = NULL;//¥Î¨ÓÅıÃìªírun¤@¹Mªº«ü°w
+	struct bullet_pos* current_bullet = NULL;//ç”¨ä¾†è®“éˆè¡¨runä¸€éçš„æŒ‡é‡
 	current_bullet = first_point;
 	while (current_bullet != NULL)
 	{
@@ -817,16 +817,16 @@ void UPDATE_bullet_list(struct bullet_pos* first_point) //§ó·s¤l¼u®y¼Ğ¡AÅı¥L©¹¯S
 		switch (current_bullet->direction)
 		{
 		case 1:
-			current_bullet->pos.Y -= 1;		//¦V¤W¶]
+			current_bullet->pos.Y -= 1;		//å‘ä¸Šè·‘
 			break;
 		case 2:
-			current_bullet->pos.Y += 1;		//¦V¤U¶]
+			current_bullet->pos.Y += 1;		//å‘ä¸‹è·‘
 			break;
 		case 3:
-			current_bullet->pos.X -= 1;		//¦V¥ª¶]
+			current_bullet->pos.X -= 1;		//å‘å·¦è·‘
 			break;
 		case 4:
-			current_bullet->pos.X += 1;		//¦V¥k¶]
+			current_bullet->pos.X += 1;		//å‘å³è·‘
 
 			break;
 		}
@@ -837,15 +837,15 @@ void UPDATE_bullet_list(struct bullet_pos* first_point) //§ó·s¤l¼u®y¼Ğ¡AÅı¥L©¹¯S
 
 void generate_bullet(COORD* current_xy, int direction)
 {
-	if (direction == 1)		//¦V¤W®g
+	if (direction == 1)		//å‘ä¸Šå°„
 	{
 		struct bullet_pos* bullet = (struct bullet_pos*)malloc(sizeof(struct bullet_pos));
 		bullet_amount++;
 		bullet->pos.X = current_xy->X + 2;
 		bullet->pos.Y = current_xy->Y - 2;
-		bullet->bullet_type = 1;//²Ä´XºØ¼uÃì
-		bullet->direction = 1;//¤è¦V©¹¤W
-		if (skillone == 1) {//skillone¶Ë®`¼W¥[
+		bullet->bullet_type = 1;//ç¬¬å¹¾ç¨®å½ˆéˆ
+		bullet->direction = 1;//æ–¹å‘å¾€ä¸Š
+		if (skillone == 1) {//skilloneå‚·å®³å¢åŠ 
 			bullet->damage = 2;
 			mp--;
 			if (mp == 0) {
@@ -853,27 +853,27 @@ void generate_bullet(COORD* current_xy, int direction)
 			}
 		}
 		else if (skillone == 0) {
-			bullet->damage = 1;		//¶Ë®`³]¬°1
-		}		//¶Ë®`³]¬°1
+			bullet->damage = 1;		//å‚·å®³è¨­ç‚º1
+		}		//å‚·å®³è¨­ç‚º1
 		bullet->last_pnext = NULL;
-		if (bullet_amount == 1)              //²Ä¤@Áû¤l¼u
+		if (bullet_amount == 1)              //ç¬¬ä¸€é¡†å­å½ˆ
 		{
 			first_bullet = bullet;
 			last_bullet = bullet;
 		}
 		else
 		{
-			bullet->last_pnext = last_bullet;//¥Ø«eªº¸`ÂI «ü¦V¤W¤@­Ó±o¸`ÂI=¤W¤@­Ó¸`ÂI
-			last_bullet->pnext = bullet;//¤W¤@­Ó¸`ÂI «ü¦V±o¤U¤@­Ó¸`ÂI=¥Ø«eªº¸`ÂI
-			last_bullet = bullet;       //°²©w¥Ø«eªº¸`ÂI¬°³Ì«á¤@­Ó
+			bullet->last_pnext = last_bullet;//ç›®å‰çš„ç¯€é» æŒ‡å‘ä¸Šä¸€å€‹å¾—ç¯€é»=ä¸Šä¸€å€‹ç¯€é»
+			last_bullet->pnext = bullet;//ä¸Šä¸€å€‹ç¯€é» æŒ‡å‘å¾—ä¸‹ä¸€å€‹ç¯€é»=ç›®å‰çš„ç¯€é»
+			last_bullet = bullet;       //å‡å®šç›®å‰çš„ç¯€é»ç‚ºæœ€å¾Œä¸€å€‹
 		}
 		bullet->pnext = NULL;
 	}
-	else if (direction == 2)		//¦V¤U®g
+	else if (direction == 2)		//å‘ä¸‹å°„
 	{
 		struct bullet_pos* bullet = (struct bullet_pos*)malloc(sizeof(struct bullet_pos));
 		bullet_amount++;
-		if (skillone == 1) {//skillone¶Ë®`¼W¥[
+		if (skillone == 1) {//skilloneå‚·å®³å¢åŠ 
 			bullet->damage = 2;
 			mp--;
 			if (mp == 0) {
@@ -881,33 +881,33 @@ void generate_bullet(COORD* current_xy, int direction)
 			}
 		}
 		else if (skillone == 0) {
-			bullet->damage = 1;		//¶Ë®`³]¬°1
+			bullet->damage = 1;		//å‚·å®³è¨­ç‚º1
 		}
 		/*bullet->pos.X = current_xy->X + 3;
 		bullet->pos.Y = current_xy->Y - 1;*/
 		bullet->pos.X = current_xy->X + 2;
 		bullet->pos.Y = current_xy->Y + 3;
-		bullet->bullet_type = 1;//²Ä´XºØ¼uÃì
-		bullet->direction = 2;//¤è¦V©¹¤U
+		bullet->bullet_type = 1;//ç¬¬å¹¾ç¨®å½ˆéˆ
+		bullet->direction = 2;//æ–¹å‘å¾€ä¸‹
 		bullet->last_pnext = NULL;
-		if (bullet_amount == 1)              //²Ä¤@Áû¤l¼u
+		if (bullet_amount == 1)              //ç¬¬ä¸€é¡†å­å½ˆ
 		{
 			first_bullet = bullet;
 			last_bullet = bullet;
 		}
 		else
 		{
-			bullet->last_pnext = last_bullet;//¥Ø«eªº¸`ÂI «ü¦V¤W¤@­Ó±o¸`ÂI=¤W¤@­Ó¸`ÂI
-			last_bullet->pnext = bullet;//¤W¤@­Ó¸`ÂI «ü¦V±o¤U¤@­Ó¸`ÂI=¥Ø«eªº¸`ÂI
-			last_bullet = bullet;       //°²©w¥Ø«eªº¸`ÂI¬°³Ì«á¤@­Ó
+			bullet->last_pnext = last_bullet;//ç›®å‰çš„ç¯€é» æŒ‡å‘ä¸Šä¸€å€‹å¾—ç¯€é»=ä¸Šä¸€å€‹ç¯€é»
+			last_bullet->pnext = bullet;//ä¸Šä¸€å€‹ç¯€é» æŒ‡å‘å¾—ä¸‹ä¸€å€‹ç¯€é»=ç›®å‰çš„ç¯€é»
+			last_bullet = bullet;       //å‡å®šç›®å‰çš„ç¯€é»ç‚ºæœ€å¾Œä¸€å€‹
 		}
 		bullet->pnext = NULL;
 	}
-	else if (direction == 3)		//¦V¥ª®g
+	else if (direction == 3)		//å‘å·¦å°„
 	{
 		struct bullet_pos* bullet = (struct bullet_pos*)malloc(sizeof(struct bullet_pos));
 		bullet_amount++;
-		if (skillone == 1) {//skillone¶Ë®`¼W¥[
+		if (skillone == 1) {//skilloneå‚·å®³å¢åŠ 
 			bullet->damage = 2;
 			mp--;
 			if (mp == 0) {
@@ -915,31 +915,31 @@ void generate_bullet(COORD* current_xy, int direction)
 			}
 		}
 		else if (skillone == 0) {
-			bullet->damage = 1;		//¶Ë®`³]¬°1
+			bullet->damage = 1;		//å‚·å®³è¨­ç‚º1
 		}
 		bullet->pos.X = current_xy->X;
 		bullet->pos.Y = current_xy->Y + 1;
-		bullet->bullet_type = 1;//²Ä´XºØ¼uÃì
-		bullet->direction = 3;//¤è¦V©¹¥ª
+		bullet->bullet_type = 1;//ç¬¬å¹¾ç¨®å½ˆéˆ
+		bullet->direction = 3;//æ–¹å‘å¾€å·¦
 		bullet->last_pnext = NULL;
-		if (bullet_amount == 1)              //²Ä¤@Áû¤l¼u
+		if (bullet_amount == 1)              //ç¬¬ä¸€é¡†å­å½ˆ
 		{
 			first_bullet = bullet;
 			last_bullet = bullet;
 		}
 		else
 		{
-			bullet->last_pnext = last_bullet;//¥Ø«eªº¸`ÂI «ü¦V¤W¤@­Ó±o¸`ÂI=¤W¤@­Ó¸`ÂI
-			last_bullet->pnext = bullet;//¤W¤@­Ó¸`ÂI «ü¦V±o¤U¤@­Ó¸`ÂI=¥Ø«eªº¸`ÂI
-			last_bullet = bullet;       //°²©w¥Ø«eªº¸`ÂI¬°³Ì«á¤@­Ó
+			bullet->last_pnext = last_bullet;//ç›®å‰çš„ç¯€é» æŒ‡å‘ä¸Šä¸€å€‹å¾—ç¯€é»=ä¸Šä¸€å€‹ç¯€é»
+			last_bullet->pnext = bullet;//ä¸Šä¸€å€‹ç¯€é» æŒ‡å‘å¾—ä¸‹ä¸€å€‹ç¯€é»=ç›®å‰çš„ç¯€é»
+			last_bullet = bullet;       //å‡å®šç›®å‰çš„ç¯€é»ç‚ºæœ€å¾Œä¸€å€‹
 		}
 		bullet->pnext = NULL;
 	}
-	else if (direction == 4)		//¦V¥k®g
+	else if (direction == 4)		//å‘å³å°„
 	{
 		struct bullet_pos* bullet = (struct bullet_pos*)malloc(sizeof(struct bullet_pos));
 		bullet_amount++;
-		if (skillone == 1) {//skillone¶Ë®`¼W¥[
+		if (skillone == 1) {//skilloneå‚·å®³å¢åŠ 
 			bullet->damage = 2;
 			mp--;
 			if (mp == 0) {
@@ -947,25 +947,25 @@ void generate_bullet(COORD* current_xy, int direction)
 			}
 		}
 		else if (skillone == 0) {
-			bullet->damage = 1;		//¶Ë®`³]¬°1
+			bullet->damage = 1;		//å‚·å®³è¨­ç‚º1
 		}
 		/*bullet->pos.X = current_xy->X + 3;
 		bullet->pos.Y = current_xy->Y - 1;*/
 		bullet->pos.X = current_xy->X + 5;
 		bullet->pos.Y = current_xy->Y + 1;
-		bullet->bullet_type = 1;//²Ä´XºØ¼uÃì
-		bullet->direction = 4;//¤è¦V©¹¥k
+		bullet->bullet_type = 1;//ç¬¬å¹¾ç¨®å½ˆéˆ
+		bullet->direction = 4;//æ–¹å‘å¾€å³
 		bullet->last_pnext = NULL;
-		if (bullet_amount == 1)              //²Ä¤@Áû¤l¼u
+		if (bullet_amount == 1)              //ç¬¬ä¸€é¡†å­å½ˆ
 		{
 			first_bullet = bullet;
 			last_bullet = bullet;
 		}
 		else
 		{
-			bullet->last_pnext = last_bullet;//¥Ø«eªº¸`ÂI «ü¦V¤W¤@­Ó±o¸`ÂI=¤W¤@­Ó¸`ÂI
-			last_bullet->pnext = bullet;//¤W¤@­Ó¸`ÂI «ü¦V±o¤U¤@­Ó¸`ÂI=¥Ø«eªº¸`ÂI
-			last_bullet = bullet;       //°²©w¥Ø«eªº¸`ÂI¬°³Ì«á¤@­Ó
+			bullet->last_pnext = last_bullet;//ç›®å‰çš„ç¯€é» æŒ‡å‘ä¸Šä¸€å€‹å¾—ç¯€é»=ä¸Šä¸€å€‹ç¯€é»
+			last_bullet->pnext = bullet;//ä¸Šä¸€å€‹ç¯€é» æŒ‡å‘å¾—ä¸‹ä¸€å€‹ç¯€é»=ç›®å‰çš„ç¯€é»
+			last_bullet = bullet;       //å‡å®šç›®å‰çš„ç¯€é»ç‚ºæœ€å¾Œä¸€å€‹
 		}
 		bullet->pnext = NULL;
 	}
@@ -973,7 +973,7 @@ void generate_bullet(COORD* current_xy, int direction)
 
 }
 
-void update_bullet_xy()//¥Î¨Ó­pºâ¤l¼u¨C¦¸²¾°Ê±o·s¦ì¤l
+void update_bullet_xy()//ç”¨ä¾†è¨ˆç®—å­å½ˆæ¯æ¬¡ç§»å‹•å¾—æ–°ä½å­
 {
 	if (first_bullet != NULL)
 	{
@@ -982,72 +982,72 @@ void update_bullet_xy()//¥Î¨Ó­pºâ¤l¼u¨C¦¸²¾°Ê±o·s¦ì¤l
 }
 void PRINT_bullet_function(struct bullet_pos* first_bullet)
 {
-	struct bullet_pos* current_bullet = NULL;//¥Î¨ÓÅıÃìªírun¤@¹Mªº«ü°w
+	struct bullet_pos* current_bullet = NULL;//ç”¨ä¾†è®“éˆè¡¨runä¸€éçš„æŒ‡é‡
 	current_bullet = first_bullet;
-	//if (current_bullet->last_pnext != NULL) {		//¦pªGfirst¤£¬O¯uªºfirst
+	//if (current_bullet->last_pnext != NULL) {		//å¦‚æœfirstä¸æ˜¯çœŸçš„first
 	//	current_bullet = current_bullet->last_pnext;
-	//	printf("ÁÙ¦³£°");
+	//	printf("é‚„æœ‰ã„Ÿ");
 	//}
 	while (current_bullet != NULL)
 	{
 		tmp_old_bullet = current_bullet->pos;
-		//printf("¦L¤U¤@­Ó");
+		//printf("å°ä¸‹ä¸€å€‹");
 		switch (current_bullet->direction)
 		{
-		case 1:	//¤W
-			tmp_old_bullet.Y += 1;//¥ı²M°£ÂÂ¸ê®Æ
+		case 1:	//ä¸Š
+			tmp_old_bullet.Y += 1;//å…ˆæ¸…é™¤èˆŠè³‡æ–™
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			printf("   ");
-			tmp_old_bullet.Y -= 1;//¥´¦L·sªº¦ì¤l
+			tmp_old_bullet.Y -= 1;//æ‰“å°æ–°çš„ä½å­
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			SetColor(11);
 			if (rolechoice == 2) {
-				printf("¡ô");
+				printf("â†‘");
 			}
 			if (rolechoice == 1) {
-				printf("¡U");
+				printf("ï½œ");
 			}
 			break;
-		case 2:	//¤U
-			tmp_old_bullet.Y -= 1;//¥ı²M°£ÂÂ¸ê®Æ
+		case 2:	//ä¸‹
+			tmp_old_bullet.Y -= 1;//å…ˆæ¸…é™¤èˆŠè³‡æ–™
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			printf("  ");
-			tmp_old_bullet.Y += 1;//¥´¦L·sªº¦ì¤l
+			tmp_old_bullet.Y += 1;//æ‰“å°æ–°çš„ä½å­
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			SetColor(11);
 			if (rolechoice == 2) {
-				printf("¡õ");
+				printf("â†“");
 			}
 			if (rolechoice == 1) {
-				printf("¡U");
+				printf("ï½œ");
 			}
 			break;
-		case 3:	//¥ª
-			tmp_old_bullet.X -= 1;//¥ı²M°£ÂÂ¸ê®Æ
+		case 3:	//å·¦
+			tmp_old_bullet.X -= 1;//å…ˆæ¸…é™¤èˆŠè³‡æ–™
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			printf("    ");
-			tmp_old_bullet.X += 1;//¥´¦L·sªº¦ì¤l
+			tmp_old_bullet.X += 1;//æ‰“å°æ–°çš„ä½å­
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			SetColor(11);
 			if (rolechoice == 2) {
-				printf("¡ö");
+				printf("â†");
 			}
 			if (rolechoice == 1) {
-				printf("¡X");
+				printf("â€”");
 			}
 			break;
-		case 4:	//¥k
-			tmp_old_bullet.X -= 1;//¥ı²M°£ÂÂ¸ê®Æ
+		case 4:	//å³
+			tmp_old_bullet.X -= 1;//å…ˆæ¸…é™¤èˆŠè³‡æ–™
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			printf("   ");
-			tmp_old_bullet.X += 1;//¥´¦L·sªº¦ì¤l
+			tmp_old_bullet.X += 1;//æ‰“å°æ–°çš„ä½å­
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), tmp_old_bullet);
 			SetColor(11);
 			if (rolechoice == 2) {
-				printf("¡÷");
+				printf("â†’");
 			}
 			if (rolechoice == 1) {
-				printf("¡X");
+				printf("â€”");
 			}
 			break;
 		}
@@ -1072,15 +1072,15 @@ void print_bullet()
 }
 void print_all(COORD* current_xy)
 {
-	//PRINT_airplane(current_xy, weapon_choose);  //¥´¦L­¸¾÷
-	if (bullet_amount >= 1)   //¦pªG¦³¤l¼u¤~¥´¦L
+	//PRINT_airplane(current_xy, weapon_choose);  //æ‰“å°é£›æ©Ÿ
+	if (bullet_amount >= 1)   //å¦‚æœæœ‰å­å½ˆæ‰æ‰“å°
 		print_bullet();
 	/*printf_all_enemy();
 	print_explosion();*/
 }
 
 
-//01/09	¦L¥X¼Ä¤HÀN¯S
+//01/09	å°å‡ºæ•µäººéœç‰¹
 void generate_holt()
 {
 	holt.pos.X = 75;
@@ -1094,9 +1094,9 @@ void print_holt()
 	tmp_pos.X = holt.old_pos.X;
 	tmp_pos.Y = holt.old_pos.Y;
 	char Holt[3][12] = {
-		"  ¡´",
-		"o ¢h  o¡±¡÷",
-		"¡k¢r ¡k",
+		"  â—",
+		"o â–‡  oÂ§â†’",
+		"ï¸»â”´ ï¸»",
 	};
 	SetColor(10);
 	for (int i = 0; i < 3; i++) {
@@ -1118,18 +1118,18 @@ void print_holt()
 
 int update_holt(COORD* current_xy)
 {
-	if (/*count_main_while_time%2 ==*/ 1) {		//¥Î¨Ó¨M©wÀN¯Sªº²¾°Ê³t«×
-		//§ÚÄ±±oÀN¯S¶]¤ÓºC¡AÅı¥L¤@¦¸¶]¨â¨B
+	if (/*count_main_while_time%2 ==*/ 1) {		//ç”¨ä¾†æ±ºå®šéœç‰¹çš„ç§»å‹•é€Ÿåº¦
+		//æˆ‘è¦ºå¾—éœç‰¹è·‘å¤ªæ…¢ï¼Œè®“ä»–ä¸€æ¬¡è·‘å…©æ­¥
 		for (int i = 0; i < 2; i++) {
-			if (invincible_time != 0) {		//¦pªG¦bµL¼Ä´Á¶¡
+			if (invincible_time != 0) {		//å¦‚æœåœ¨ç„¡æ•µæœŸé–“
 				invincible_time++;
 			}
-			if (invincible_time >= 25) {	//¦pªG´Á¶¡µ²§ô¡A§â´Á¶¡°O¼ÆÂk¹s¡Aµ²§ôµL¼Ä
+			if (invincible_time >= 25) {	//å¦‚æœæœŸé–“çµæŸï¼ŒæŠŠæœŸé–“è¨˜æ•¸æ­¸é›¶ï¼ŒçµæŸç„¡æ•µ
 
 				invincible_time = 0;
 			}
 			if ((max(current_xy->X, holt.pos.X) - min(current_xy->X, holt.pos.X)) <= 8 && (max(current_xy->Y, holt.pos.Y) - min(current_xy->Y, holt.pos.Y)) <= 3) {
-				if (invincible_time == 0) {		//¦pªG¤£¦AµL¼Ä´Á¶¡¡A¶i¤JµL¼Ä´Á¶¡
+				if (invincible_time == 0) {		//å¦‚æœä¸å†ç„¡æ•µæœŸé–“ï¼Œé€²å…¥ç„¡æ•µæœŸé–“
 					invincible_time++;
 					health--;
 				}
@@ -1139,12 +1139,12 @@ int update_holt(COORD* current_xy)
 			switch (rand() % 5)
 			{
 			case 0:
-				if ((current_xy->X + 6) > holt.pos.X) {		//¦pªG£«£«¤@¤@¼K¼K
+				if ((current_xy->X + 6) > holt.pos.X) {		//å¦‚æœã„šã„šä¸€ä¸€å˜¿å˜¿
 					holt.pos.X++;
 				}
 				break;
 			case 1:
-				if ((current_xy->X - 6) < holt.pos.X) {		//¦pªG£«£«¤@¤@¼K¼K
+				if ((current_xy->X - 6) < holt.pos.X) {		//å¦‚æœã„šã„šä¸€ä¸€å˜¿å˜¿
 					holt.pos.X--;
 				}
 				break;
