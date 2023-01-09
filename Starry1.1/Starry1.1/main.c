@@ -14,7 +14,7 @@ void game_start();
 void show_health(COORD* current_xy);
 void show_mp();
 int keybord_control(COORD* current_xy);
-void show_all_data(COORD* current_xy);
+void show_all_data();
 void character(int i);
 void print_character(COORD* current_xy, int i);
 int choose_role();
@@ -63,6 +63,7 @@ int map1_exceed_agree;
 int holtchat;
 int invincible_time = 0;
 int skillone;
+int change_white;
 
 int main() {
 	srand((unsigned int)time(NULL));
@@ -88,6 +89,7 @@ void game_start() {
 	map1_exceed_agree = 1;
 	holtchat = 1;
 	skillone = 0;
+	change_white = 0;
 	generate_holt();
 	while (1) {
 		if (map1_agree == 1) {//地圖一
@@ -106,10 +108,17 @@ void game_start() {
 			print_holt();
 			show_Holt_health(&current_xy);
 			update_holt(&current_xy);
+			if (GetAsyncKeyState(0x45) && mp > 0) {
+				skillone = 1;
+			}
+			if (GetAsyncKeyState(0x51)) {
+				skillone = 0;
+			}
 		}
 		if (map1_exceed_agree == 1) {
 			exceed_map1(&current_xy);//圖一邊界判定
 		}
+		show_health(&current_xy);
 		print_character(&current_xy, rolechoice);
 		print_all(&current_xy);
 		if ((bullet_amount) >= 1)
@@ -117,7 +126,7 @@ void game_start() {
 			judge_bullet();//判斷是否超邊界要釋放記憶體
 			update_bullet_xy();
 		}
-		show_all_data(&current_xy);
+		show_all_data();
 		count_main_while_time++;
 		Sleep(25);
 		if (count_main_while_time > 999999) {
@@ -131,8 +140,7 @@ void game_start() {
 
 
 }
-void show_all_data(COORD* current_xy) {
-	show_health(&current_xy);
+void show_all_data() {
 	show_mp();
 }
 //角色血量
@@ -180,10 +188,12 @@ void show_health(COORD* current_xy)
 		back_ground2();
 		battle_agree = 0;
 		Holt_chat_agree = 1;
+		map1_exceed_agree = 1;
+		change_white = 1;
 		health = 6; //預設改成current_health
 		mp = 10;
+		generate_holt();
 	}
-	printf("\n");
 	SetColor(7);
 }
 //霍特血量
@@ -214,7 +224,7 @@ void show_Holt_health(COORD* current_xy)
 		SetColor(4);
 		printf("▇");
 	}
-	if (holt.hp == 0) {
+	if (holt.hp <= 0) {
 		COORD text_pos;
 		text_pos.X = 40;
 		text_pos.Y = 24;
@@ -247,6 +257,7 @@ void show_mp()
 	rim.Y = mp_pos.Y - 1;
 	word.X = mp_pos.X - 7;
 	word.Y = mp_pos.Y;
+	SetColor(7);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), mp_pos);//先把舊的清除
 	printf("            ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), rim);
@@ -262,9 +273,6 @@ void show_mp()
 		SetColor(3);
 		printf("▇");
 	}
-
-
-	printf("\n");
 	SetColor(7);
 }
 void story2_print() {
@@ -313,6 +321,7 @@ void Holt_chat(COORD* current_xy) {
 		printf("按下空白開始對話");
 		if (GetAsyncKeyState(0x20)) {
 			if (holtchat == 1) {
+				change_white = 0;
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                         ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
@@ -432,12 +441,6 @@ int keybord_control(COORD* current_xy)
 	down = GetAsyncKeyState(0x28);
 	left = GetAsyncKeyState(0x25);
 	right = GetAsyncKeyState(0x27);
-	if (GetAsyncKeyState(0x45) && mp > 0) {
-		skillone = 1;
-	}
-	if (GetAsyncKeyState(0x51)) {
-		skillone = 0;
-	}
 	//2023/01/06子彈更新_多方向攻擊
 	if (battle_agree == 1) {
 		if (count_space_key < SHOOT_HOW_FAST)		//如果沒等於SOOT_HOW_FAST就加一
@@ -612,6 +615,18 @@ int exceed_map(COORD* current_xy) {
 	if (current_xy->Y < 1) {
 		current_xy->Y = 1;
 	}
+	if (holt.pos.X > 104) {
+		holt.pos.X = 104;
+	}
+	if (holt.pos.X < 2) {
+		holt.pos.X = 2;
+	}
+	if (holt.pos.Y > 24) {
+		holt.pos.Y = 24;
+	}
+	if (holt.pos.Y < 1) {
+		holt.pos.Y = 1;
+	}
 	return 0;
 }
 //地圖一邊界判定
@@ -669,15 +684,18 @@ void print_character(COORD* current_xy, int rolechoice) {
 		for (int i = 0; i < 3; i++)
 		{
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), old_character_pos);
-			printf("      ");
+			printf("       ");
 			old_character_pos.Y += 1;
 		}
 	}
 	old_character_pos = xy;
-	if (invincible_time != 0) {
+	if (invincible_time != 0 && health > 0) {
 		SetColor(invincible_time);
 	}
 	for (int i = 0, j = 3; i < 3, j < 6; i++, j++) {
+		if (change_white == 1) {
+			SetColor(7);
+		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), xy);
 		switch (rolechoice) {
 		case 1:
