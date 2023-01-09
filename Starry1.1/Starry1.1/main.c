@@ -11,10 +11,10 @@
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 
 void game_start();
-void show_health();
+void show_health(COORD* current_xy);
 void show_mp();
 int keybord_control(COORD* current_xy);
-void show_all_data();
+void show_all_data(COORD* current_xy);
 void character(int i);
 void print_character(COORD* current_xy, int i);
 int choose_role();
@@ -92,7 +92,7 @@ void game_start() {
 	while (1) {
 		if (map1_agree == 1) {//地圖一
 			back_ground2();
-			story2_print();
+			//story2_print();
 			map1_agree = 0;
 		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), time_xy);//時間
@@ -117,7 +117,7 @@ void game_start() {
 			judge_bullet();//判斷是否超邊界要釋放記憶體
 			update_bullet_xy();
 		}
-		show_all_data();
+		show_all_data(&current_xy);
 		count_main_while_time++;
 		Sleep(25);
 		if (count_main_while_time > 999999) {
@@ -131,12 +131,12 @@ void game_start() {
 
 
 }
-void show_all_data() {
-	show_health();
+void show_all_data(COORD* current_xy) {
+	show_health(&current_xy);
 	show_mp();
 }
 //角色血量
-void show_health()
+void show_health(COORD* current_xy)
 {
 	int i;
 	COORD health_pos;
@@ -169,6 +169,7 @@ void show_health()
 		COORD text_pos;
 		text_pos.X = 40;
 		text_pos.Y = 24;
+		SetColor(7);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 		printf("霍特: %s,你還是回去種田吧", name);
 		Sleep(2000);
@@ -445,10 +446,7 @@ int keybord_control(COORD* current_xy)
 		{
 			if (count_space_key == SHOOT_HOW_FAST)		//用SHOOT_HOW_FAST決定要射多快
 			{
-				if (mp >= 1)		//先暫定有魔力才可發射?(
-				{
-					generate_bullet(current_xy, 1);   //已經是指針就不用再傳遞地址
-				}
+			    generate_bullet(current_xy, 1);   //已經是指針就不用再傳遞地址
 				count_space_key = 0;
 			}
 			//count_space_key++;		//把這個變數改到外面
@@ -458,10 +456,7 @@ int keybord_control(COORD* current_xy)
 		{
 			if (count_space_key == SHOOT_HOW_FAST)
 			{
-				if (mp >= 1)		//先暫定有魔力才可發射?(
-				{
-					generate_bullet(current_xy, 2);   //已經是指針就不用再傳遞地址
-				}
+				generate_bullet(current_xy, 2);   //已經是指針就不用再傳遞地址
 				count_space_key = 0;
 			}
 			count_space_key++;
@@ -471,10 +466,7 @@ int keybord_control(COORD* current_xy)
 		{
 			if (count_space_key == SHOOT_HOW_FAST)
 			{
-				if (mp >= 1)		//先暫定有魔力才可發射?(
-				{
-					generate_bullet(current_xy, 3);   //已經是指針就不用再傳遞地址
-				}
+				generate_bullet(current_xy, 3);   //已經是指針就不用再傳遞地址
 				count_space_key = 0;
 			}
 			count_space_key++;
@@ -484,10 +476,7 @@ int keybord_control(COORD* current_xy)
 		{
 			if (count_space_key == SHOOT_HOW_FAST)
 			{
-				if (mp >= 1)		//先暫定有魔力才可發射?(
-				{
-					generate_bullet(current_xy, 4);   //已經是指針就不用再傳遞地址
-				}
+				generate_bullet(current_xy, 4);   //已經是指針就不用再傳遞地址
 				count_space_key = 0;
 			}
 			count_space_key++;
@@ -587,7 +576,7 @@ int choose_role() {
 	Sleep(2000);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
 	printf("5秒內按下1.「戰士」; 按下2.「遊俠」:  ");
-	Sleep(5000);
+	Sleep(2000);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
 	printf("                                      ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
