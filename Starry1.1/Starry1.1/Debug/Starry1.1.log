@@ -1,0 +1,4 @@
+﻿  main.c
+C:\Users\Max Liu\NCU_Documents\DSA_project\Starry1.1\Starry1.1\drawUI.h(2,7): warning C4101: 'name': 未參考的區域變數
+C:\Users\Max Liu\NCU_Documents\DSA_project\Starry1.1\Starry1.1\main.c(66,6): warning C4101: 'i': 未參考的區域變數
+  Starry1.1.vcxproj -> C:\Users\Max Liu\NCU_Documents\DSA_project\Starry1.1\Debug\Starry1.1.exe
