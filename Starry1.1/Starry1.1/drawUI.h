@@ -37,7 +37,7 @@ void story_print() {
 
 
 
-	/*story_text();*/
+	story_text();
 }
 
 void story_text()
@@ -48,23 +48,23 @@ void story_text()
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 	SetColor(9);
-	printf("¤ÑªÅ­°¤U¤F¶Â©]ªº±c¹õ...");
+	printf("å¤©ç©ºé™ä¸‹äº†é»‘å¤œçš„å¸·å¹•...");
 	Sleep(STORY_TEXT_TIME);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 	printf("                                                           ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
-	printf("ºûº¸«°Ãä¤@´Ê¾ğ®Ç...");
+	printf("ç¶­çˆ¾åŸé‚Šä¸€æ£µæ¨¹æ—...");
 	Sleep(STORY_TEXT_TIME);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
-	printf("¤@­Ó¤Ö¦~²·±æµÛº¡¤Ñªº¬P¤æ...");
+	printf("ä¸€å€‹å°‘å¹´çœºæœ›è‘—æ»¿å¤©çš„æ˜Ÿæ–—...");
 	Sleep(STORY_TEXT_TIME);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
-	printf("°¿©¿¤§¶¡¡A¤@¹D¬y¬P¹º¹L..");
-	show_meteor();							//¦L¥X«B®É©Ô
+	printf("å€å¿½ä¹‹é–“ï¼Œä¸€é“æµæ˜ŸåŠƒé..");
+	show_meteor();							//å°å‡ºé›¨æ™‚æ‹‰
 	SetColor(9);
 	Sleep(STORY_TEXT_TIME - 1500);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
-	printf("¨º¤Ñ¤§«á¡A±q¦¹©]±ß¦AµL¥ú©ú¡A¶i¤J¤FµLºÉªº¶Â·t¤¤!");
+	printf("é‚£å¤©ä¹‹å¾Œï¼Œå¾æ­¤å¤œæ™šå†ç„¡å…‰æ˜ï¼Œé€²å…¥äº†ç„¡ç›¡çš„é»‘æš—ä¸­!");
 	Sleep(STORY_TEXT_TIME + 1500);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 	printf("                                                           ");
@@ -91,7 +91,7 @@ void back_ground1()
 							 " /                                                                   \\    ",
 							 "/                                                                      \\  " };
 	COORD ground_pos;
-	//¦L¥X¦a­±
+	//å°å‡ºåœ°é¢
 	ground_pos.X = 2;
 	ground_pos.Y = GROUND_Y_POSITION;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
@@ -100,7 +100,7 @@ void back_ground1()
 		printf("=");
 	}
 	SetColor(7);
-	//¦L¥X¤s
+	//å°å‡ºå±±
 	for (i = 0; i < 15; i++) {
 		ground_pos.X = 4;
 		ground_pos.Y = GROUND_Y_POSITION - 15 + i;
@@ -109,15 +109,15 @@ void back_ground1()
 		printf("%s", mountant[i]);
 		SetColor(7);
 	}
-	//¦L¬P¬P
+	//å°æ˜Ÿæ˜Ÿ
 	COORD star_pos;
 	star_pos.X = 81;
 	star_pos.Y = 4;
 	char star[4][25] = {
-		"¡¹",
-		"       ¡¹",
-		"                   ¡¹",
-		"            ¡¹",
+		"â˜…",
+		"       â˜…",
+		"                   â˜…",
+		"            â˜…",
 	};
 	for (i = 0; i < 4; i++) {
 		star_pos.Y = GROUND_Y_POSITION - 16 + i;
@@ -126,24 +126,24 @@ void back_ground1()
 		printf("%s", star[i]);
 		SetColor(7);
 	}
-	//¦L¥X¾ğ
+	//å°å‡ºæ¨¹
 	ground_pos.X = 8;
 	ground_pos.Y = GROUND_Y_POSITION - 8;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
 	SetColor(10);
-	printf("      ¡´ ");
+	printf("      â— ");
 	ground_pos.X = 8;
 	ground_pos.Y = GROUND_Y_POSITION - 7;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
-	printf("    ¡´¡´¡´");
+	printf("    â—â—â—");
 	ground_pos.X = 8;
 	ground_pos.Y = GROUND_Y_POSITION - 6;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
-	printf("  ¡´¡´¡´¡´¡´");
+	printf("  â—â—â—â—â—");
 	ground_pos.X = 8;
 	ground_pos.Y = GROUND_Y_POSITION - 5;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
-	printf("¡´¡´¡´¡´¡´¡´¡´");
+	printf("â—â—â—â—â—â—â—");
 	ground_pos.X = 10;
 	ground_pos.Y = GROUND_Y_POSITION - 4;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
@@ -152,7 +152,7 @@ void back_ground1()
 	ground_pos.X = 10;
 	ground_pos.Y = GROUND_Y_POSITION - 3;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
-	printf(" | |  |¡´");
+	printf(" | |  |â—");
 	ground_pos.X = 10;
 	ground_pos.Y = GROUND_Y_POSITION - 2;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
@@ -163,7 +163,7 @@ void back_ground1()
 	printf("|  ||   \\\\\\");
 }
 void back_ground2() {
-	//¥h­I
+	//å»èƒŒ
 	COORD ground_pos;
 	ground_pos.X = 2;
 	ground_pos.Y = 2;
@@ -172,7 +172,7 @@ void back_ground2() {
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
 		printf("                                                                                                            ");
 	}
-	//¦L·F
+	//å°å¹¹
 	COORD trunk_pos;
 	trunk_pos.X = 2;
 	trunk_pos.Y = 2;
@@ -204,78 +204,78 @@ void back_ground2() {
 		printf("%s", map1_trunk[i]);
 		SetColor(7);
 	}
-	//¦L¸ô2023/1/6
+	//å°è·¯2023/1/6
 	COORD road_pos;
 	road_pos.X = 2;
 	road_pos.Y = GROUND_Y_POSITION + 5;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
 	SetColor(3);
 	for (int i = 0;i < 54;i++) {
-		printf("¡É");
+		printf("ï¹");
 	}
 	road_pos.X = 2;
 	road_pos.Y = GROUND_Y_POSITION + 1;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
 	for (int i = 0;i < 14;i++) {
-		printf("¡Ç");
+		printf("ï¹Š");
 	}
 	road_pos.X = 28;
 	for (int i = 0;i < 6;i++) {
 		road_pos.Y = GROUND_Y_POSITION - i;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
-		printf("¡U");
+		printf("ï½œ");
 	}
 	road_pos.X = 28;
 	road_pos.Y = GROUND_Y_POSITION - 6;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
 	for (int i = 0;i < 13;i++) {
-		printf("¡É");
+		printf("ï¹");
 	}
 	road_pos.X = 78;
 	road_pos.Y = GROUND_Y_POSITION - 6;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
 	for (int i = 0;i < 4;i++) {
-		printf("¡É");
+		printf("ï¹");
 	}
 	road_pos.X = 84;
 	for (int i = 0;i < 4;i++) {
 		road_pos.Y = GROUND_Y_POSITION - 5 + i;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
-		printf("¡U");
+		printf("ï½œ");
 	}
 	road_pos.X = 84;
 	road_pos.Y = GROUND_Y_POSITION - 2;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
-	printf("¢|");
+	printf("â””");
 	for (int i = 1;i < 10;i++) {
-		printf("¢w");
+		printf("â”€");
 	}
-	printf("¢{ ");
+	printf("â” ");
 	road_pos.X = 94;
 	for (int i = 0;i < 2;i++) {
 		road_pos.Y = GROUND_Y_POSITION - 1 + i;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
-		printf("¡U");
+		printf("ï½œ");
 	}
 	road_pos.X = 94;
 	road_pos.Y = GROUND_Y_POSITION + 1;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), road_pos);
 	for (int i = 0;i < 8;i++) {
-		printf("¡Ç");
+		printf("ï¹Š");
 	}
-	//¦L¹ï¸Ü®Ø2023/1/6
+	//å°å°è©±æ¡†2023/1/6
 	COORD chat_pos;
 	chat_pos.X = 8;
 	chat_pos.Y = 2;
 	char chat_frame[8][45] = {
-		"¢z¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¢{ ",
-		"¡U ¡y                                  ¡U",
-		"¡U                                     ¡U",
-		"¡U                                     ¡U",
-		"¡U                                     ¡U",
-		"¡U                                     ¡U",
-		"¡U                                  ¡z ¡U",
-		"¢|¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¡X¢} ",
+		"â”Œâ€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â” ",
+		"ï½œ ã€                                  ï½œ",
+		"ï½œ                                     ï½œ",
+		"ï½œ                                     ï½œ",
+		"ï½œ                                     ï½œ",
+		"ï½œ                                     ï½œ",
+		"ï½œ                                  ã€ ï½œ",
+		"â””â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â”˜ ",
 	};
 	for (int i = 0;i < 8;i++) {
 		chat_pos.Y = GROUND_Y_POSITION - 19 + i;
@@ -283,22 +283,22 @@ void back_ground2() {
 		SetColor(4);
 		printf("%s", chat_frame[i]);
 	}
-	//¦L©Ğ2023/01/06 09:23
+	//å°æˆ¿2023/01/06 09:23
 	COORD house_pos;
 	house_pos.X = 55;
 	char house[12][29] = {
-		"        ¢¬ ¡Ã¡Ã¡Ã¢­ ",
-		"      ¢¬ ¡U¡Ãùø ¡Ã¡U¢­ ",
-		"    ¢¬   ¡U¡Xùá ¡X¡U  ¢­ ",
-		"  ¢¬     ¡U¡Åùø ¡Å¡U    ¢­ ",
-		"¢¬¡Å¡Å¡Å¡Å¡Å¡Å¡Å¡Å¡Å¡Å¡Å ¢­ ",
-		"¡U¡U                  ¡U¡U",
-		"¡U¡U                  ¡U¡U",
-		"¡U¡U    ¡U¡Ã¡Ã¡Ã¡U    ¡U¡U",
-		"¡U¡U    ¡U ¡U   ¡U    ¡U¡U",
-		"¡U¡U    ¡U ¡U ¡U¡U    ¡U¡U",
-		"¡U¡U    ¡U    ¡U¡U    ¡U¡U",
-		"¡U¡U¡Å¡Å¡U¡Å¡Å¡Å¡U¡Å¡Å¡U¡U",
+		"        â•± ï¿£ï¿£ï¿£â•² ",
+		"      â•± ï½œï¿£â•‘ ï¿£ï½œâ•² ",
+		"    â•±   ï½œâ€”â•¬ â€”ï½œ  â•² ",
+		"  â•±     ï½œËâ•‘ Ëï½œ    â•² ",
+		"â•±ËËËËËËËËËËË â•² ",
+		"ï½œï½œ                  ï½œï½œ",
+		"ï½œï½œ                  ï½œï½œ",
+		"ï½œï½œ    ï½œï¿£ï¿£ï¿£ï½œ    ï½œï½œ",
+		"ï½œï½œ    ï½œ ï½œ   ï½œ    ï½œï½œ",
+		"ï½œï½œ    ï½œ ï½œ ï½œï½œ    ï½œï½œ",
+		"ï½œï½œ    ï½œ    ï½œï½œ    ï½œï½œ",
+		"ï½œï½œËËï½œËËËï½œËËï½œï½œ",
 	};
 	for (int i = 0;i < 12;i++) {
 		house_pos.Y = GROUND_Y_POSITION - 16 + i;
@@ -306,27 +306,27 @@ void back_ground2() {
 		SetColor(6);
 		printf("%s", house[i]);
 	}
-	//¦L¾ğ
+	//å°æ¨¹
 	COORD tree_pos;
 	tree_pos.X = 99;
 	char tree[17][20] = {
-		"      ¢¬ ",
-		"    ¢¬ ",
-		"    ¢­ ",
-		"   ¢A ¢­ ",
-		"  ¢A    ¢­ ",
-		"  ¢­       ",
-		"    ¢­     ",
-		"  ¢A  ¢­   ",
-		" ¢A     ¢­ ",
-		"   ¢­     ",
-		"     ¢©    ",
-		"     ¢i¢©¢¬ ",
-		"      ¢¬ ",
-		"      ¢­ ",
-		"      ¢¬ ¢­ ",
-		"    ¡ç ",
-		"      ¢© ",
+		"      â•± ",
+		"    â•± ",
+		"    â•² ",
+		"   âˆ• â•² ",
+		"  âˆ•    â•² ",
+		"  â•²       ",
+		"    â•²     ",
+		"  âˆ•  â•²   ",
+		" âˆ•     â•² ",
+		"   â•²     ",
+		"     â—£    ",
+		"     â–ˆâ—£â•± ",
+		"      â•± ",
+		"      â•² ",
+		"      â•± â•² ",
+		"    âˆ  ",
+		"      â—£ ",
 	};
 	for (int i = 0;i < 17;i++) {
 		tree_pos.Y = GROUND_Y_POSITION - 16 + i;
@@ -334,13 +334,13 @@ void back_ground2() {
 		SetColor(2);
 		printf("%s", tree[i]);
 	}
-	//¦LÂO
+	//å°å¢
 	COORD clump_pos;
 	clump_pos.X = 28;
 	char clump[3][35] = {
-		"¢~  ¢w  ¢w  ¢w  ¢¡¢w  ¢w  ¢w  ¢¡ ",
-		"¡U          ¡U        ¡U ",
-		"¢¢  ¢w  ¢w  ¢w  ¢£¢w  ¢w  ¢w  ¢£ ",
+		"â•­  â”€  â”€  â”€  â•®â”€  â”€  â”€  â•® ",
+		"ï½œ          ï½œ        ï½œ ",
+		"â•°  â”€  â”€  â”€  â•¯â”€  â”€  â”€  â•¯ ",
 	};
 	for (int i = 0;i < 3;i++) {
 		clump_pos.Y = GROUND_Y_POSITION - 10 + i;
@@ -348,13 +348,13 @@ void back_ground2() {
 		SetColor(10);
 		printf("%s", clump[i]);
 	}
-	//¦LÀN¯S
+	//å°éœç‰¹
 	COORD Holt_pos;
 	Holt_pos.X = 75;
 	char Holt[3][12] = {
-		"  ¡´",
-		"o ¢h  o¡±¡÷",
-		"¡k¢r ¡k",
+		"  â—",
+		"o â–‡  oÂ§â†’",
+		"ï¸»â”´ ï¸»",
 	};
 	for (int i = 0;i < 3;i++) {
 		Holt_pos.Y = GROUND_Y_POSITION - 4 + i;
@@ -364,7 +364,7 @@ void back_ground2() {
 	}
 }
 void battle_print() {
-	//¥h­I
+	//å»èƒŒ
 	COORD ground_pos;
 	ground_pos.X = 2;
 	ground_pos.Y = 2;
@@ -373,13 +373,13 @@ void battle_print() {
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), ground_pos);
 		printf("                                                                                                            ");
 	}
-	//¦LÀN¯S
+	//å°éœç‰¹
 	COORD Holt_pos;
 	Holt_pos.X = 75;
 	char Holt[3][12] = {
-		"  ¡´",
-		"o ¢h  o¡±¡÷",
-		"¡k¢r ¡k",
+		"  â—",
+		"o â–‡  oÂ§â†’",
+		"ï¸»â”´ ï¸»",
 	};
 	for (int i = 0;i < 3;i++) {
 		Holt_pos.Y = GROUND_Y_POSITION - 6 + i;
@@ -388,7 +388,7 @@ void battle_print() {
 		printf("%s", Holt[i]);
 	}
 }
-//³o¬O¬y¬P¤£¥ÎÃhºÃ
+//é€™æ˜¯æµæ˜Ÿä¸ç”¨æ‡·ç–‘
 void show_meteor()
 {
 	COORD meteor_pos;
@@ -403,7 +403,7 @@ void show_meteor()
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), meteor_pos);
 		printf(" //     ");
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), next_meteor_pos);
-		printf("¡¹");
+		printf("â˜…");
 		Sleep(300);
 		meteor_pos.X = meteor_pos.X - 2;
 		meteor_pos.Y = meteor_pos.Y + 1;
@@ -427,15 +427,15 @@ void character(int i)
 {
 
 	if (i == 0)
-		printf("  ¡´¡õ");
+		printf("  â—â†“");
 	else if (i == 1)
-		printf("¡°¢h ¢}");
+		printf("â€»â–‡ â”˜");
 	else if (i == 2)
-		printf("¡k¢r ¡k");
+		printf("ï¸»â”´ ï¸»");
 	else if (i == 3)
-		printf("¡ô¡´");
+		printf("â†‘â—");
 	else if (i == 4)
-		printf("¢| ¢h <}");//¡÷
+		printf("â”” â–‡ <}");//â†’
 	else if (i == 5)
-		printf("¡k¢r ¡k");
+		printf("ï¸»â”´ ï¸»");
 }
