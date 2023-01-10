@@ -1,7 +1,10 @@
-# Environment Settings
+# Final Poject Starry
+通訊二 110503531 劉泰君
+通訊二 110503524 陳冠羽
+## Environment Settings
 visual studio 2019
 
-## Game content
+### Game content
 This is a RPG game</br>
 
 It is very fun to play</br>
@@ -17,16 +20,16 @@ If you want to experience more interesting content, please give us feedback</br>
 Hope this game can bring you joy!
 
 ### How to play
-first enter your name </br> 
+1.first enter your name </br> 
 
-wasd to move the character</br> 
+2.wasd to move the character</br> 
 
-↑ ↓ ← → to shoot in combat</br> 
+3.↑ ↓ ← → to shoot in combat</br> 
 
-space to talk to npc</br> 
+4.space to talk to npc</br> 
 
-e to using skill one </br>
+5.e to using skill one </br>
 
-q to close the skill</br>
+6.q to close the skill</br>
 
 ENJOY IT !
