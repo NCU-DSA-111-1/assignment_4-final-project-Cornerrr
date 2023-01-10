@@ -92,7 +92,7 @@ void game_start() {
 	while (1) {
 		if (map1_agree == 1) {//地圖一
 			back_ground2();
-			//story2_print();
+			story2_print();
 			map1_agree = 0;
 		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), time_xy);//時間
@@ -579,7 +579,7 @@ int choose_role() {
 	Sleep(2000);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
 	printf("5秒內按下1.「戰士」; 按下2.「遊俠」:  ");
-	Sleep(2000);
+	Sleep(5000);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
 	printf("                                      ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), choose_role_text);
