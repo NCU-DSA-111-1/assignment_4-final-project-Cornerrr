@@ -14,7 +14,7 @@ void game_start();
 void show_health(COORD* current_xy);
 void show_mp();
 int keybord_control(COORD* current_xy);
-void show_all_data();
+void show_all_data(COORD* current_xy);
 void character(int i);
 void print_character(COORD* current_xy, int i);
 int choose_role();
@@ -53,7 +53,7 @@ int update_holt(COORD* current_xy);
 
 int count_main_while_time = 0;
 int health = 6;
-int mp = 7;
+int mp = 10;
 COORD old_character_pos;
 int map1_agree = 1;
 int rolechoice;
@@ -63,7 +63,6 @@ int map1_exceed_agree;
 int holtchat;
 int invincible_time = 0;
 int skillone;
-int change_white;
 
 int main() {
 	srand((unsigned int)time(NULL));
@@ -89,12 +88,11 @@ void game_start() {
 	map1_exceed_agree = 1;
 	holtchat = 1;
 	skillone = 0;
-	change_white = 0;
 	generate_holt();
 	while (1) {
 		if (map1_agree == 1) {//地圖一
 			back_ground2();
-			story2_print();
+			//story2_print();
 			map1_agree = 0;
 		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), time_xy);//時間
@@ -105,20 +103,20 @@ void game_start() {
 			Holt_chat(&current_xy);
 		}
 		if (battle_agree == 1) {
-			print_holt();
-			show_Holt_health(&current_xy);
-			update_holt(&current_xy);
 			if (GetAsyncKeyState(0x45) && mp > 0) {
 				skillone = 1;
 			}
 			if (GetAsyncKeyState(0x51)) {
 				skillone = 0;
 			}
+			print_holt();
+			show_Holt_health(&current_xy);
+			update_holt(&current_xy);
 		}
 		if (map1_exceed_agree == 1) {
 			exceed_map1(&current_xy);//圖一邊界判定
 		}
-		show_health(&current_xy);
+
 		print_character(&current_xy, rolechoice);
 		print_all(&current_xy);
 		if ((bullet_amount) >= 1)
@@ -126,7 +124,7 @@ void game_start() {
 			judge_bullet();//判斷是否超邊界要釋放記憶體
 			update_bullet_xy();
 		}
-		show_all_data();
+		show_all_data(&current_xy);
 		count_main_while_time++;
 		Sleep(25);
 		if (count_main_while_time > 999999) {
@@ -140,7 +138,8 @@ void game_start() {
 
 
 }
-void show_all_data() {
+void show_all_data(COORD* current_xy) {
+	show_health(current_xy);
 	show_mp();
 }
 //角色血量
@@ -177,7 +176,6 @@ void show_health(COORD* current_xy)
 		COORD text_pos;
 		text_pos.X = 40;
 		text_pos.Y = 24;
-		SetColor(7);
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), text_pos);
 		printf("霍特: %s,你還是回去種田吧", name);
 		Sleep(2000);
@@ -188,12 +186,12 @@ void show_health(COORD* current_xy)
 		back_ground2();
 		battle_agree = 0;
 		Holt_chat_agree = 1;
-		map1_exceed_agree = 1;
-		change_white = 1;
 		health = 6; //預設改成current_health
 		mp = 10;
+		invincible_time = 0;
 		generate_holt();
 	}
+	printf("\n");
 	SetColor(7);
 }
 //霍特血量
@@ -202,7 +200,7 @@ void show_Holt_health(COORD* current_xy)
 	int i;
 	COORD holt_health_pos;
 	holt_health_pos.X = 24;			//放血條那邊的中心點
-	holt_health_pos.Y = 3;
+	holt_health_pos.Y = 2;
 	COORD holt_rim;
 	COORD holt_word;
 	holt_rim.X = holt_health_pos.X - 2;
@@ -210,7 +208,7 @@ void show_Holt_health(COORD* current_xy)
 	holt_word.X = holt_health_pos.X - 7;
 	holt_word.Y = holt_health_pos.Y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_health_pos);//先把舊的清除
-	printf("                                             ");
+	printf("                                          ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), holt_rim);
 	printf("┌                                         ┐");
 	holt_rim.Y += 2;
@@ -239,6 +237,7 @@ void show_Holt_health(COORD* current_xy)
 		map1_exceed_agree = 1;
 		battle_agree = 0;
 		holtchat = 2;
+		map1_exceed_agree = 1;
 		Holt_chat_agree = 1;
 		mp = 10;
 	}
@@ -257,7 +256,6 @@ void show_mp()
 	rim.Y = mp_pos.Y - 1;
 	word.X = mp_pos.X - 7;
 	word.Y = mp_pos.Y;
-	SetColor(7);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), mp_pos);//先把舊的清除
 	printf("            ");
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), rim);
@@ -273,6 +271,9 @@ void show_mp()
 		SetColor(3);
 		printf("▇");
 	}
+
+
+	printf("\n");
 	SetColor(7);
 }
 void story2_print() {
@@ -321,7 +322,6 @@ void Holt_chat(COORD* current_xy) {
 		printf("按下空白開始對話");
 		if (GetAsyncKeyState(0x20)) {
 			if (holtchat == 1) {
-				change_white = 0;
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
 				printf("                         ");
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), chat_pos);
@@ -449,10 +449,10 @@ int keybord_control(COORD* current_xy)
 		{
 			if (count_space_key == SHOOT_HOW_FAST)		//用SHOOT_HOW_FAST決定要射多快
 			{
-			    generate_bullet(current_xy, 1);   //已經是指針就不用再傳遞地址
+				generate_bullet(current_xy, 1);   //已經是指針就不用再傳遞地址
 				count_space_key = 0;
 			}
-			//count_space_key++;		//把這個變數改到外面
+			count_space_key++;		//把這個變數改到外面
 
 		}
 		else if (GetAsyncKeyState(0x28))//方向鍵下攻擊
@@ -637,37 +637,37 @@ int exceed_map1(COORD* current_xy) {
 	if (current_xy->Y < 16) {
 		current_xy->Y = 16;
 	}
-	for (int i = 0;i < 25;i++) {
+	for (int i = 0; i < 25; i++) {
 		if ((current_xy->X == (3 + i)) && (current_xy->Y == 21)) {
 			current_xy->X = (3 + i);
 			current_xy->Y = 22;
 		}
 	}
-	for (int i = 0;i < 6;i++) {
+	for (int i = 0; i < 6; i++) {
 		if ((current_xy->X == 28) && (current_xy->Y == (21 - i))) {
 			current_xy->X = 29;
 			current_xy->Y = (21 - i);
 		}
 	}
-	for (int i = 0;i < 3;i++) {
+	for (int i = 0; i < 3; i++) {
 		if ((current_xy->X == 69) && (current_xy->Y == (18 - i))) {
 			current_xy->X = 68;
 			current_xy->Y = (18 - i);
 		}
 	}
-	for (int i = 0;i < 16;i++) {
-		if ((current_xy->X == (75 + i)) && (current_xy->Y == 18)) {
-			current_xy->X = (75 + i);
+	for (int i = 0; i < 16; i++) {
+		if ((current_xy->X == (69 + i)) && (current_xy->Y == 18)) {
+			current_xy->X = (69+ i);
 			current_xy->Y = 19;
 		}
 	}
-	for (int i = 0;i < 3;i++) {
+	for (int i = 0; i < 3; i++) {
 		if ((current_xy->X == 89) && (current_xy->Y == (21 - i))) {
 			current_xy->X = 88;
 			current_xy->Y = (21 - i);
 		}
 	}
-	for (int i = 0;i < 25;i++) {
+	for (int i = 0; i < 25; i++) {
 		if ((current_xy->X == (90 + i)) && (current_xy->Y == 21)) {
 			current_xy->X = (90 + i);
 			current_xy->Y = 22;
@@ -684,18 +684,15 @@ void print_character(COORD* current_xy, int rolechoice) {
 		for (int i = 0; i < 3; i++)
 		{
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), old_character_pos);
-			printf("       ");
+			printf("      ");
 			old_character_pos.Y += 1;
 		}
 	}
 	old_character_pos = xy;
-	if (invincible_time != 0 && health > 0) {
+	if (invincible_time != 0 && health != 0) {
 		SetColor(invincible_time);
 	}
 	for (int i = 0, j = 3; i < 3, j < 6; i++, j++) {
-		if (change_white == 1) {
-			SetColor(7);
-		}
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), xy);
 		switch (rolechoice) {
 		case 1:
