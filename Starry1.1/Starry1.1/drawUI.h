@@ -37,7 +37,7 @@ void story_print() {
 
 
 
-	/*story_text();*/
+	story_text();
 }
 
 void story_text()
