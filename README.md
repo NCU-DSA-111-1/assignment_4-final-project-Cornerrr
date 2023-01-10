@@ -4,7 +4,7 @@
 ## Environment Settings
 visual studio 2019
 
-### Game content
+## Game content
 This is a RPG game</br>
 
 It is very fun to play</br>
@@ -19,7 +19,7 @@ If you want to experience more interesting content, please give us feedback</br>
 
 Hope this game can bring you joy!
 
-### How to play
+## How to play
 1.first enter your name </br> 
 
 2.wasd to move the character</br> 
