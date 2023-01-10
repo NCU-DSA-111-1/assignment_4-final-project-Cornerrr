@@ -1,5 +1,5 @@
 # Final Poject Starry
-通訊二 110503531 劉泰君
+通訊二 110503531 劉泰君</br>
 通訊二 110503524 陳冠羽
 ## Environment Settings
 visual studio 2019
